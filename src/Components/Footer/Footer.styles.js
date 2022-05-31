@@ -40,7 +40,7 @@ export const FormContent = styled.form`
   label {
     font-size: 18px;
     font-weight: bold;
-    margin: 8px 0;
+    margin: 5px 0;
     letter-spacing: 1.2px;
   }
 
