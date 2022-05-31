@@ -18,7 +18,7 @@ const Heading = styled.h1`
   -webkit-text-fill-color: transparent;
   font-size: 25px;
   letter-spacing: 1.2px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ff6666;
   margin: 15px auto;
 `;
 

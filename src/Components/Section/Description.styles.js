@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const DescriptionContainer = styled.div`
-  height: 280px;
+  height: 250px;
   width: 500px;
-  margin: 20px 0;
+  margin: 16px 0;
 `;
 
 export const Heading = styled.div`
   width: 100%;
-  border-bottom: 1px solid #ff9999;
+  border-bottom: 1px solid #ff6666;
 
   h2 {
     background: #e52d27; /* fallback for old browsers */
@@ -26,7 +26,7 @@ export const Heading = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 2.5px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-size: 25px;
     /* text-transform: uppercase; */
   }
@@ -37,18 +37,16 @@ export const TransactionContent = styled.div`
 `;
 
 export const CrossBlock = styled.div`
-  display: none;
   position: absolute;
-  left: -26px;
+  left: 5%;
   top: 13px;
-  height: 26px;
-  width: 27px;
+  padding: 6px 11px;
   background: #e52d27;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
-  cursor: pointer;
-  transition: 0.9s ease-in-out;
+  z-index: -1;
+  opacity: 0;
 `;
 
 export const Content = styled.div`
@@ -57,9 +55,13 @@ export const Content = styled.div`
   width: 100%;
   margin: 17px auto;
   box-shadow: 10px 10px 26px -15px rgba(224, 163, 196, 1);
+  z-index: 1;
 
   &:hover ${CrossBlock} {
-    display: block;
+    opacity: 1;
+    transform: translateX(-170%);
+    transition: all 0.5s ease;
+    cursor: pointer;
   }
 `;
 

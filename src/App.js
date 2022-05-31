@@ -5,6 +5,7 @@ import GlobaStyle from "./globalStyles";
 import Navbar from "./Components/Navbar/Navbar";
 import Header from "./Components/Header/Header";
 import Description from "./Components/Section/Description";
+import Footer from "./Components/Footer/Footer";
 
 const AppContainer = styled(Container)`
   display: flex;
@@ -20,6 +21,7 @@ function App() {
       <Navbar />
       <Header />
       <Description />
+      <Footer />
     </AppContainer>
   );
 }
