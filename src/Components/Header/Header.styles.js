@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const HeaderContent = styled.div`
-  height: 100px;
+  height: 220px;
   width: 500px;
-  margin: 20px 0;
+  margin-top: 20px;
+  margin-bottom: 50px;
 `;
 
 export const AmountHeading = styled.div`

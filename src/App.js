@@ -4,6 +4,7 @@ import { Container } from "./globalStyles";
 import GlobaStyle from "./globalStyles";
 import Navbar from "./Components/Navbar/Navbar";
 import Header from "./Components/Header/Header";
+import Description from "./Components/Section/Description";
 
 const AppContainer = styled(Container)`
   display: flex;
@@ -18,6 +19,7 @@ function App() {
       <GlobaStyle />
       <Navbar />
       <Header />
+      <Description />
     </AppContainer>
   );
 }
