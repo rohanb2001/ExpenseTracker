@@ -3,11 +3,9 @@ import {
   DescriptionContainer,
   Heading,
   TransactionContent,
-  Content,
-  CrossBlock,
-  TransactionHistory,
-  Color,
 } from "./Description.styles";
+
+import Transactions from "../Transactions/Transactions";
 
 const Description = () => {
   return (
@@ -17,30 +15,7 @@ const Description = () => {
           <h2>History</h2>
         </Heading>
         <TransactionContent>
-          <Content>
-            <CrossBlock>x</CrossBlock>
-            <TransactionHistory>
-              <p>Cash</p>
-              <p>+500</p>
-            </TransactionHistory>
-            <Color></Color>
-          </Content>
-          <Content>
-            <CrossBlock>x</CrossBlock>
-            <TransactionHistory>
-              <p>Book</p>
-              <p>-40</p>
-            </TransactionHistory>
-            <Color></Color>
-          </Content>
-          <Content>
-            <CrossBlock>x</CrossBlock>
-            <TransactionHistory>
-              <p>Camera</p>
-              <p>-200</p>
-            </TransactionHistory>
-            <Color></Color>
-          </Content>
+          <Transactions />
         </TransactionContent>
       </DescriptionContainer>
     </>
