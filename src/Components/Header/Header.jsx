@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TransactionContext } from "../Contexts/Expense";
 import {
   HeaderContent,
   AmountHeading,
@@ -9,6 +10,7 @@ import {
 } from "./Header.styles";
 
 const Header = () => {
+  const { state } = useContext(TransactionContext);
   return (
     <>
       <HeaderContent>
@@ -19,12 +21,12 @@ const Header = () => {
         <TrackerBox>
           <Income>
             <h3>INCOME</h3>
-            <h2>$500.00</h2>
+            <h2>${state.income}</h2>
           </Income>
           <Line></Line>
           <Expense>
             <h3>EXPENSE</h3>
-            <h2>$240.00</h2>
+            <h2>${state.expense}</h2>
           </Expense>
         </TrackerBox>
       </HeaderContent>

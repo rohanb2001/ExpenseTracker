@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const HeaderContent = styled.div`
   height: 220px;
   width: 500px;
-  margin-top: 20px;
-  margin-bottom: 35px;
+  margin-top: 2px;
+  margin-bottom: 28px;
 `;
 
 export const AmountHeading = styled.div`

@@ -1,12 +1,21 @@
-import React from "react";
-import { AddTransactionContainer, Heading, FormContent } from "./Footer.styles";
+import React, { useContext } from "react";
+import { AddTransactionContainer, Heading } from "./Footer.styles";
 
-import { GenericButton } from "../GenericButton/GenericButton";
-import useExpenseCalculation from "../../Hooks/useExpenseCalculation";
+import FormInput from "../Form/FormInput";
+import Form from "../Form/Form";
+import { TransactionContext } from "../Contexts/Expense";
 
 const Footer = () => {
-  const { handleSubmit, handleTextChange, handleAmountChange, ...options } =
-    useExpenseCalculation();
+  const { addIncome, addExpense } = useContext(TransactionContext);
+
+  const handleSubmit = (e, values) => {
+    e.preventDefault();
+    if (parseInt(values.amount) < 0) {
+      addExpense(values);
+    } else {
+      addIncome(values);
+    }
+  };
 
   return (
     <>
@@ -14,25 +23,23 @@ const Footer = () => {
         <Heading>
           <h2>Add new transaction</h2>
         </Heading>
-        <FormContent onSubmit={handleSubmit}>
-          <label htmlFor="text">Text</label>
-          <input
+        <Form
+          initialValues={{ history: "", amount: 0 }}
+          handleSubmit={handleSubmit}
+        >
+          <FormInput
             type="text"
-            placeholder="Enter text..."
-            value={options.InputTextValue}
-            onChange={(e) => handleTextChange(e)}
+            placeholder="Enter history..."
+            name="history"
+            labelContent="Text"
           />
-          <label htmlFor="amount">
-            Amount<br></br>(negative - expense, positive - income)
-          </label>
-          <input
+          <FormInput
             type="number"
             placeholder="Enter amount..."
-            value={options.InputAmountValue}
-            onChange={(e) => handleAmountChange(e)}
+            name="amount"
+            labelContent="Amount (negative - expense, positive - income)"
           />
-          <GenericButton type="submit">Add transaction</GenericButton>
-        </FormContent>
+        </Form>
       </AddTransactionContainer>
     </>
   );

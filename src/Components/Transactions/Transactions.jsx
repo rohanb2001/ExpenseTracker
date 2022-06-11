@@ -13,7 +13,7 @@ const Transactions = () => {
         <CrossBlock>x</CrossBlock>
         <TransactionHistory>
           <p>Cash</p>
-          <p>+500</p>
+          <p>+30</p>
         </TransactionHistory>
         <Color></Color>
       </Content>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AddTransactionContainer = styled.div`
   height: 260px;
   width: 500px;
-  margin: 16px 0;
+  margin: 5px 0;
 `;
 
 export const Heading = styled.div`
@@ -29,24 +29,5 @@ export const Heading = styled.div`
     margin-bottom: 7px;
     font-size: 24px;
     /* text-transform: uppercase; */
-  }
-`;
-
-export const FormContent = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin: 22px 0;
-
-  label {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px 0;
-    letter-spacing: 1.2px;
-  }
-
-  input {
-    margin: 11px 0;
-    padding: 10px 8px;
-    outline: none;
   }
 `;
