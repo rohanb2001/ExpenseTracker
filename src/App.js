@@ -16,13 +16,15 @@ const AppContainer = styled(Container)`
 
 function App() {
   return (
-    <AppContainer>
-      <GlobaStyle />
-      <Navbar />
-      <Header />
-      <Description />
-      <Footer />
-    </AppContainer>
+    <>
+      <AppContainer>
+        <GlobaStyle />
+        <Navbar />
+        <Header />
+        <Description />
+        <Footer />
+      </AppContainer>
+    </>
   );
 }
 

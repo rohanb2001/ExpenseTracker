@@ -9,6 +9,9 @@ export const DescriptionContainer = styled.div`
 export const Heading = styled.div`
   width: 100%;
   border-bottom: 1px solid #ff6666;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   h2 {
     background: #e52d27; /* fallback for old browsers */
@@ -29,6 +32,17 @@ export const Heading = styled.div`
     margin-bottom: 6px;
     font-size: 25px;
     /* text-transform: uppercase; */
+  }
+
+  span {
+    color: #b31217;
+    font-weight: bold;
+    letter-spacing: 1.3px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
   }
 `;
 

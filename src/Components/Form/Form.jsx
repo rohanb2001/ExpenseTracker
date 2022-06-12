@@ -12,7 +12,12 @@ const Form = ({ children, initialValues, handleSubmit }) => {
   };
 
   return (
-    <MainForm onSubmit={(e) => handleSubmit(e, formValue)}>
+    <MainForm
+      onSubmit={(e) => {
+        handleSubmit(e, formValue);
+        setFormValue(initialValues);
+      }}
+    >
       <FormContext.Provider value={{ formValue: formValue, handleChange }}>
         {children}
       </FormContext.Provider>
