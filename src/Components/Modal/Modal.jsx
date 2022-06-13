@@ -11,6 +11,7 @@ const ModalWrapper = ({ children, open, setOpen }) => {
       center
       classNames={{
         modal: "customModal",
+        overlay: "customOverlay",
       }}
     >
       {children}
