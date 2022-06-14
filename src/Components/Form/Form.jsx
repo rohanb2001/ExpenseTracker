@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { GenericButton } from "../GenericButton/GenericButton";
 import { MainForm } from "./Form.styles";
+import { v4 as uuidv4 } from "uuid";
 
 export const FormContext = createContext(null);
 
@@ -14,7 +15,7 @@ const Form = ({ children, initialValues, handleSubmit }) => {
   return (
     <MainForm
       onSubmit={(e) => {
-        handleSubmit(e, formValue);
+        handleSubmit(e, { ...formValue, id: uuidv4() });
         setFormValue(initialValues);
       }}
     >

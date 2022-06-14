@@ -1,6 +1,10 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
+  history: sessionStorage.getItem("history")
+    ? JSON.parse(sessionStorage.getItem("history"))
+    : [],
+
   income: sessionStorage.getItem("income")
     ? JSON.parse(sessionStorage.getItem("income"))
     : 0,
@@ -10,42 +14,52 @@ const initialState = {
   balance: sessionStorage.getItem("balance")
     ? JSON.parse(sessionStorage.getItem("balance"))
     : 0,
-  history: sessionStorage.getItem("history")
-    ? JSON.parse(sessionStorage.getItem("history"))
-    : [],
 };
 
 export const TransactionContext = createContext(initialState);
 
 const ExpenseReducer = (state, action) => {
   switch (action.type) {
-    case "INCOME":
-      let newIncome = state.income + action.payload;
+    case "ADD_HISTORY":
+      let newHistory =
+        action.payload !== null
+          ? [...state.history, action.payload]
+          : [...state.history];
+      let newIncome = newHistory.reduce((acc, curr) => {
+        let amount = parseInt(curr.amount);
+        if (amount > 0) {
+          return acc + amount;
+        } else {
+          return acc;
+        }
+      }, 0);
+      let newExpense = newHistory.reduce((acc, curr) => {
+        let amount = parseInt(curr.amount);
+        if (amount < 0) {
+          return acc + amount;
+        } else {
+          return acc;
+        }
+      }, 0);
+      let newBalance = newIncome + newExpense;
+      sessionStorage.setItem("history", JSON.stringify(newHistory));
       sessionStorage.setItem("income", JSON.stringify(newIncome));
-      return {
-        ...state,
-        income: newIncome,
-      };
-    case "EXPENSE":
-      let newExpense = state.expense + action.payload;
       sessionStorage.setItem("expense", JSON.stringify(newExpense));
-      return {
-        ...state,
-        expense: newExpense,
-      };
-    case "BALANCE":
-      let newBalance = parseInt(state.income) + parseInt(state.expense);
       sessionStorage.setItem("balance", JSON.stringify(newBalance));
       return {
         ...state,
+        history: newHistory,
+        income: newIncome,
+        expense: newExpense,
         balance: newBalance,
       };
-    case "ADD_HISTORY":
-      let newHistory = [...state.history, action.payload];
-      sessionStorage.setItem("history", JSON.stringify(newHistory));
+    case "DELETE_HISTORY":
+      let filterHistory = state.history.filter(
+        (transaction) => transaction.id !== action.payload
+      );
       return {
         ...state,
-        history: newHistory,
+        history: filterHistory,
       };
     default:
       return state;
@@ -55,43 +69,24 @@ const ExpenseReducer = (state, action) => {
 export const ExpenseProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ExpenseReducer, initialState);
 
-  const addIncome = (value) => {
-    dispatch({
-      type: "INCOME",
-      payload: +value.amount,
-    });
-
-    totalBalance();
-    addHistory(value, "income");
-  };
-
-  const addExpense = (value) => {
-    dispatch({
-      type: "EXPENSE",
-      payload: +value.amount,
-    });
-
-    totalBalance();
-    addHistory(value, "expense");
-  };
-
-  const totalBalance = () => {
-    dispatch({
-      type: "BALANCE",
-    });
-  };
-
-  const addHistory = (value, category) => {
+  const addHistory = (value) => {
     dispatch({
       type: "ADD_HISTORY",
-      payload: { ...value, category },
+      payload: value,
     });
+  };
+
+  const deleteHistory = (value) => {
+    dispatch({
+      type: "DELETE_HISTORY",
+      payload: value.id,
+    });
+
+    addHistory(null);
   };
 
   return (
-    <TransactionContext.Provider
-      value={{ state, addIncome, addExpense, totalBalance }}
-    >
+    <TransactionContext.Provider value={{ state, addHistory, deleteHistory }}>
       {children}
     </TransactionContext.Provider>
   );

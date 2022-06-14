@@ -8,21 +8,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Footer = () => {
-  const { addIncome, addExpense, state } = useContext(TransactionContext);
+  const { addHistory, state } = useContext(TransactionContext);
 
   const handleSubmit = (e, values) => {
     e.preventDefault();
-    let amount = parseInt(values.amount);
-    if (amount < 0) {
-      if (state.income < parseInt(amount.toString().substr(1))) {
-        return toast.error("Expense value exceeded! ", {
-          theme: "light",
-        });
+    if (parseInt(values.amount) < 0) {
+      if (parseInt(values.amount.toString().substr(1)) > state.income) {
+        return toast.error("Expense cannot be higher!");
       }
-      addExpense(values);
-    } else {
-      addIncome(values);
     }
+    addHistory(values);
   };
 
   return (

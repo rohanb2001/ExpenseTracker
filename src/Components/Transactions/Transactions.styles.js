@@ -43,5 +43,6 @@ export const TransactionHistory = styled.div`
 
 export const Color = styled.div`
   width: 1.3%;
-  background: #99cc00;
+  /* background: #99cc00; */
+  background: ${({ bgColor }) => (bgColor === "+" ? "#99cc00" : "#e52d27")};
 `;
