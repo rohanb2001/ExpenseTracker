@@ -13,8 +13,6 @@ const Transactions = ({ open }) => {
   const { state, deleteHistory } = useContext(TransactionContext);
 
   const handleDelete = (item) => {
-    console.log(item, state);
-
     let remainingIncome = state.income - parseInt(item.amount);
     // let allow =
     //   remainingIncome > parseInt(state.expense.toString().substr(1))
